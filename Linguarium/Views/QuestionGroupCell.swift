@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 
 
@@ -13,6 +14,8 @@ struct GroupItem: Hashable {
     
     public let title: String
     public let percentage: String
+    
+    public var percentageSubscriber: AnyCancellable?
     
     init(title: String, percentage: String) {
         self.title = title
@@ -22,7 +25,7 @@ struct GroupItem: Hashable {
 
 public class QuestionGroupCell: UITableViewCell {
     
-    static let cellCornerRadius: CGFloat = 25
+    static let cellCornerRadius: CGFloat = 10
     
     static let identifier = "QuestionGroupCell"
     

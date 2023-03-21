@@ -5,14 +5,21 @@
 //  Created by Raiden Yamato on 09.11.2022.
 //
 
+import Combine
 import Foundation
 
 public class QuestionGroup: Codable {
     
     
     public class Score: Codable {
-        public var correctCount: Int = 0
-        public var incorrectCount: Int = 0
+        public var correctCount: Int = 0 {
+            didSet { updateRunningPercentage() }
+        }
+        public var incorrectCount: Int = 0 {
+            didSet { updateRunningPercentage() }
+        }
+        
+        @Published public var runningPercentage: Double = 0
         
         public init() {}
         
@@ -22,15 +29,30 @@ public class QuestionGroup: Codable {
         }
         
         public required init(from decoder: Decoder) throws {
-            let container: KeyedDecodingContainer<QuestionGroup.Score.CodingKeys> = try decoder.container(keyedBy: QuestionGroup.Score.CodingKeys.self)
-            correctCount = try container.decode(Int.self, forKey: QuestionGroup.Score.CodingKeys.correctCount)
-            incorrectCount = try container.decode(Int.self, forKey: QuestionGroup.Score.CodingKeys.incorrectCount)
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            correctCount = try container.decode(Int.self, forKey: CodingKeys.correctCount)
+            incorrectCount = try container.decode(Int.self, forKey: CodingKeys.incorrectCount)
+            updateRunningPercentage()
+        }
+        
+        private func updateRunningPercentage() {
+            let totalCount = correctCount + incorrectCount
+            guard totalCount > 0 else {
+                runningPercentage = 0
+                return
+            }
+            runningPercentage = Double(correctCount) / Double(totalCount)
+        }
+        
+        public func reset() {
+            correctCount = 0
+            incorrectCount = 0
         }
     }
     
     
     public let questions: [Question]
-    public var score: Score
+    public private(set) var score: Score
     public let title: String
     
     public init(questions: [Question],
