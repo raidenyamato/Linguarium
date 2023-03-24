@@ -10,26 +10,30 @@ import Combine
 
 
 
-struct GroupItem: Hashable {
+class GroupItem {
     
-    public let title: String
-    public let percentage: String
+   
     
-    public var percentageSubscriber: AnyCancellable?
+    public let questionGroup: QuestionGroup
+    var percentage: String = "0 %"
     
-    init(title: String, percentage: String) {
-        self.title = title
-        self.percentage = percentage
+    
+    
+    init(questionGroup: QuestionGroup) {
+        self.questionGroup = questionGroup
     }
 }
 
 public class QuestionGroupCell: UITableViewCell {
+    
+    public var percentageSubscriber: AnyCancellable?
     
     static let cellCornerRadius: CGFloat = 10
     
     static let identifier = "QuestionGroupCell"
     
     var groupItem: GroupItem?
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,9 +47,9 @@ public class QuestionGroupCell: UITableViewCell {
         super.layoutSubviews()
     }
     
-    public func configure(title: String, percentage: String) {
+    public func configure(questionGroup: QuestionGroup) {
         
-        groupItem = GroupItem(title: title, percentage: percentage)
+        groupItem = GroupItem(questionGroup: questionGroup)
         
         //        var config = MyContentConfiguration()
         //        config.title = title
@@ -66,8 +70,17 @@ public class QuestionGroupCell: UITableViewCell {
         
         var contentConfig = MyContentConfiguration().updated(for: state)
         
-        contentConfig.title = groupItem!.title
+        contentConfig.title = groupItem!.questionGroup.title
+
+        percentageSubscriber =
+        groupItem?.questionGroup.score.$runningPercentage
+            .receive(on: DispatchQueue.main)
+            .map() {
+              return String(format: "%.0f %%", round(100 * $0))
+            }.assign(to: \.!.percentage, on: groupItem)
+        
         contentConfig.percentage = groupItem!.percentage
+        
         
         var backgroundConfig = backgroundConfiguration?.updated(for: state)
         backgroundConfig?.backgroundColor = .white
@@ -153,9 +166,10 @@ class MyContentView: UIView, UIContentView {
 
 struct MyContentConfiguration: UIContentConfiguration, Hashable {
     var title = ""
-    var percentage = "0%"
+    var percentage = "0 %"
     var textlColor: UIColor?
     var fontWeight: UIFont.Weight?
+    
     
     func makeContentView() -> UIView & UIContentView {
         return MyContentView(configuration: self)

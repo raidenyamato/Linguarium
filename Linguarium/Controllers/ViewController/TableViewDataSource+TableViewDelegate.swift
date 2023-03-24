@@ -17,7 +17,10 @@ extension ViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestionGroupCell.identifier, for: indexPath) as! QuestionGroupCell
         let questionGroup = questionGroups[indexPath.row]
-        cell.configure(title: questionGroup.title, percentage: "0%")
+        cell.configure(questionGroup: questionGroup)
+        
+        cell.groupItem?.percentage = String(format: "%.0f %%", round(100 * questionGroup.score.runningPercentage))
+        
         return cell
     }
 }

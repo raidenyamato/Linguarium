@@ -78,8 +78,8 @@
             filePath = "Linguarium/Views/QuestionGroupCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "updated(for:)"
             landmarkType = "7">
             <Locations>
@@ -126,8 +126,8 @@
             filePath = "Linguarium/Views/QuestionGroupCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "makeContentView()"
             landmarkType = "7">
          </BreakpointContent>
