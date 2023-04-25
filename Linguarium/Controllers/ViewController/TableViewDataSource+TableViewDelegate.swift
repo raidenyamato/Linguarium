@@ -42,6 +42,6 @@ extension ViewController: UITableViewDelegate {
         navigationController?.pushViewController(questionViewController, animated: true)
         return indexPath
     }
+
     
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

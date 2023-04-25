@@ -10,6 +10,18 @@ import Foundation
 
 public class QuestionGroup: Codable {
     
+    public let questions: [Question]
+    public private(set) var score: Score
+    public let title: String
+    
+    public init(questions: [Question],
+                score: Score = Score(),
+                title: String) {
+        self.questions = questions
+        self.score = score
+        self.title = title
+    }
+    
     
     public class Score: Codable {
         public var correctCount: Int = 0 {
@@ -51,16 +63,6 @@ public class QuestionGroup: Codable {
     }
     
     
-    public let questions: [Question]
-    public private(set) var score: Score
-    public let title: String
-    
-    public init(questions: [Question],
-                score: Score = Score(),
-                title: String) {
-        self.questions = questions
-        self.score = score
-        self.title = title
-    }
+   
 }
 

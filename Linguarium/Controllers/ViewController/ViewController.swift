@@ -106,13 +106,19 @@ public class ViewController: UIViewController {
     
    // MARK: need to continue
     @objc private func rightBarButtonMethod() {
-        let addGroupView = UIView(frame: view.bounds)
-        //view.addSubview(addGroupView)
-       //addGroupView.backgroundColor = UIColor.black
-        view.addSubview(visualEffectView)
-        UIView.animate(withDuration: 5) {
-            self.visualEffectView.effect = UIBlurEffect(style: UIBlurEffect.Style.prominent)
-        }
+        let createQuestionGroupViewController = CreateQuestionGroupViewController()
+        createQuestionGroupViewController.modalPresentationStyle = .pageSheet
+        createQuestionGroupViewController.modalTransitionStyle = .coverVertical
+        present(UINavigationController(rootViewController: createQuestionGroupViewController), animated: true)
+        
+        
+//        let addGroupView = UIView(frame: view.bounds)
+//        //view.addSubview(addGroupView)
+//       //addGroupView.backgroundColor = UIColor.black
+//        view.addSubview(visualEffectView)
+//        UIView.animate(withDuration: 5) {
+//            self.visualEffectView.effect = UIBlurEffect(style: UIBlurEffect.Style.prominent)
+//        }
     }
 }
 

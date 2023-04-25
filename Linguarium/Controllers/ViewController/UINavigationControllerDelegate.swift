@@ -14,17 +14,19 @@ extension ViewController: UINavigationControllerDelegate {
    
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        guard toVC is QuestionViewController else {
-            return nil
+
+        
+        if toVC is QuestionViewController {
+            switch operation {
+            case .push:
+                return FlipPresentAnimationController(originFrame: cellFrame!)
+            case .pop:
+                return nil
+            default:
+                return nil
+            }
         }
-        switch operation {
-        case .push:
-            return FlipPresentAnimationController(originFrame: cellFrame!)
-        case .pop:
-            return nil
-        default:
-            return nil
-        }
+        return nil
     }
     
     

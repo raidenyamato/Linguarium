@@ -10,6 +10,7 @@ import UIKit
 class FlipPresentAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     
     private let originFrame: CGRect
+    
         init(originFrame: CGRect) {
         self.originFrame = originFrame
     }
@@ -21,7 +22,6 @@ class FlipPresentAnimationController: NSObject, UIViewControllerAnimatedTransiti
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let fromVC = transitionContext.viewController(forKey: .from) as? ViewController,
               let toVC = transitionContext.viewController(forKey: .to) as? QuestionViewController,
-              ///!!!!!!! important! change this after create to view
               let snapshot = toVC.questionView.snapshotView(afterScreenUpdates: true)
         else { return }
         
@@ -51,7 +51,7 @@ class FlipPresentAnimationController: NSObject, UIViewControllerAnimatedTransiti
                                 animations: {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3, animations: {
                 fromVC.view.layer.transform = AnimationHelper.yRotation(-.pi / 2)
-//                fromVC.selectedCell!.layer.transform = AnimationHelper.yRotation(-.pi / 2)
+                AnimationHelper.perspectiveTransform(for: containerView)
             })
             UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 2/3, animations: {
                 snapshot.layer.transform = AnimationHelper.yRotation(0.0)
@@ -63,7 +63,6 @@ class FlipPresentAnimationController: NSObject, UIViewControllerAnimatedTransiti
         }, completion: { _ in
             toVC.view.isHidden = false
             snapshot.removeFromSuperview()
-//            fromVC.selectedCell!.layer.transform = CATransform3DIdentity
             fromVC.view.layer.transform = CATransform3DIdentity
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     

@@ -17,8 +17,6 @@ class GroupItem {
     public let questionGroup: QuestionGroup
     var percentage: String = "0 %"
     
-    
-    
     init(questionGroup: QuestionGroup) {
         self.questionGroup = questionGroup
     }
