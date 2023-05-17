@@ -12,13 +12,6 @@ public class ViewController: UIViewController {
     var selectedCell: QuestionGroupCell?
     var cellFrame: CGRect?
     
-    // MARK: BLUR EFFECT
-    var visualEffectView = UIVisualEffectView() {
-        didSet {
-            visualEffectView.effect = nil
-        }
-    }
-    
     
     //  MARK: - Outlets
     internal var tableView: UITableView! {
@@ -106,19 +99,17 @@ public class ViewController: UIViewController {
     
    // MARK: need to continue
     @objc private func rightBarButtonMethod() {
-        let createQuestionGroupViewController = CreateQuestionGroupViewController()
-        createQuestionGroupViewController.modalPresentationStyle = .pageSheet
-        createQuestionGroupViewController.modalTransitionStyle = .coverVertical
-        present(UINavigationController(rootViewController: createQuestionGroupViewController), animated: true)
+        let createQuestionGroupVC = CreateQuestionGroupViewController()
+        createQuestionGroupVC.delegate = self
+        createQuestionGroupVC.modalPresentationStyle = .pageSheet
+        createQuestionGroupVC.modalTransitionStyle = .coverVertical
+        let toViewController = UINavigationController(rootViewController: createQuestionGroupVC)
+        
+        present(toViewController, animated: true)
         
         
-//        let addGroupView = UIView(frame: view.bounds)
-//        //view.addSubview(addGroupView)
-//       //addGroupView.backgroundColor = UIColor.black
-//        view.addSubview(visualEffectView)
-//        UIView.animate(withDuration: 5) {
-//            self.visualEffectView.effect = UIBlurEffect(style: UIBlurEffect.Style.prominent)
-//        }
+
+        
     }
 }
 

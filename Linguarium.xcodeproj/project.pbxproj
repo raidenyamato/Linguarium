@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB22657B29F69254002226F1 /* CreateQuestionGroupTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB22657A29F69254002226F1 /* CreateQuestionGroupTitleCell.swift */; };
-		AB22658029F698C6002226F1 /* CreateQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB22657F29F698C6002226F1 /* CreateQuestionCell.swift */; };
 		AB2F54032919C88400AFE834 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F54022919C88400AFE834 /* Question.swift */; };
 		AB2F5405291BBBCF00AFE834 /* QuestionGroupCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F5404291BBBCF00AFE834 /* QuestionGroupCaretaker.swift */; };
 		AB2F5407291BBD0100AFE834 /* QuestionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F5406291BBD0100AFE834 /* QuestionGroup.swift */; };
@@ -24,6 +22,13 @@
 		AB51A67529BE6898000E1C1E /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB51A67429BE6898000E1C1E /* AppSettingsViewController.swift */; };
 		AB51A67729BE6B1D000E1C1E /* UITableViewDataSource+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB51A67629BE6B1D000E1C1E /* UITableViewDataSource+UITableViewDelegate.swift */; };
 		AB51A67929C2178C000E1C1E /* BaseQuestionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB51A67829C2178C000E1C1E /* BaseQuestionStrategy.swift */; };
+		AB5B565729F9C5290081C6DC /* VCCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B565629F9C5290081C6DC /* VCCustomView.swift */; };
+		AB5B565929FC04C00081C6DC /* CQCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B565829FC04C00081C6DC /* CQCollectionView.swift */; };
+		AB5B565B29FC2BE00081C6DC /* Delegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B565A29FC2BE00081C6DC /* Delegate+DataSource.swift */; };
+		AB5B565D29FED31C0081C6DC /* CreateQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B565C29FED31C0081C6DC /* CreateQuestionCell.swift */; };
+		AB5B565F29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B565E29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift */; };
+		AB5B566129FEDAFC0081C6DC /* CreateQuestionGroupViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B566029FEDAFC0081C6DC /* CreateQuestionGroupViewControllerDelegate.swift */; };
+		AB5B94F02A0D1A0200C1B0DA /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B94EF2A0D1A0200C1B0DA /* TextFieldWithPadding.swift */; };
 		AB6C6A612976F5DD003BDE89 /* FlipPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C6A602976F5DD003BDE89 /* FlipPresentAnimationController.swift */; };
 		AB6C6A642979A8A7003BDE89 /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C6A632979A8A7003BDE89 /* AnimationHelper.swift */; };
 		AB6C6A66297FDCF1003BDE89 /* FadePushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C6A65297FDCF1003BDE89 /* FadePushAnimator.swift */; };
@@ -41,8 +46,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB22657A29F69254002226F1 /* CreateQuestionGroupTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionGroupTitleCell.swift; sourceTree = "<group>"; };
-		AB22657F29F698C6002226F1 /* CreateQuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateQuestionCell.swift; path = "../../../../../../../iOS books/Design_Patterns_by_Tutorials_v3.0.0/Design_Patterns_by_Tutorials_source_code_v3.0.0/09-builder-pattern/resources/Views/CreateQuestionCell.swift"; sourceTree = "<group>"; };
 		AB2F54022919C88400AFE834 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		AB2F5404291BBBCF00AFE834 /* QuestionGroupCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionGroupCaretaker.swift; sourceTree = "<group>"; };
 		AB2F5406291BBD0100AFE834 /* QuestionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionGroup.swift; sourceTree = "<group>"; };
@@ -58,6 +61,13 @@
 		AB51A67429BE6898000E1C1E /* AppSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
 		AB51A67629BE6B1D000E1C1E /* UITableViewDataSource+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		AB51A67829C2178C000E1C1E /* BaseQuestionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuestionStrategy.swift; sourceTree = "<group>"; };
+		AB5B565629F9C5290081C6DC /* VCCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCustomView.swift; sourceTree = "<group>"; };
+		AB5B565829FC04C00081C6DC /* CQCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCollectionView.swift; sourceTree = "<group>"; };
+		AB5B565A29FC2BE00081C6DC /* Delegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delegate+DataSource.swift"; sourceTree = "<group>"; };
+		AB5B565C29FED31C0081C6DC /* CreateQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionCell.swift; sourceTree = "<group>"; };
+		AB5B565E29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionGroupTitleCell.swift; sourceTree = "<group>"; };
+		AB5B566029FEDAFC0081C6DC /* CreateQuestionGroupViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionGroupViewControllerDelegate.swift; sourceTree = "<group>"; };
+		AB5B94EF2A0D1A0200C1B0DA /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
 		AB6C6A602976F5DD003BDE89 /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipPresentAnimationController.swift; sourceTree = "<group>"; };
 		AB6C6A632979A8A7003BDE89 /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		AB6C6A65297FDCF1003BDE89 /* FadePushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadePushAnimator.swift; sourceTree = "<group>"; };
@@ -90,8 +100,10 @@
 		AB22657C29F69842002226F1 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				AB22657F29F698C6002226F1 /* CreateQuestionCell.swift */,
-				AB22657A29F69254002226F1 /* CreateQuestionGroupTitleCell.swift */,
+				AB5B56622A052C8A0081C6DC /* Cells */,
+				AB5B565629F9C5290081C6DC /* VCCustomView.swift */,
+				AB5B565829FC04C00081C6DC /* CQCollectionView.swift */,
+				AB5B94EF2A0D1A0200C1B0DA /* TextFieldWithPadding.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -124,6 +136,15 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		AB5B56622A052C8A0081C6DC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AB5B565C29FED31C0081C6DC /* CreateQuestionCell.swift */,
+				AB5B565E29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		AB6C6A5F2976F44A003BDE89 /* Animation controllers  */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +170,7 @@
 				AB6C6A68299CFDAB003BDE89 /* TableViewDataSource+TableViewDelegate.swift */,
 				AB6C6A6A299E82CE003BDE89 /* UINavigationControllerDelegate.swift */,
 				AB51A66629B7A6C4000E1C1E /* QuestionViewControllerDelegate.swift */,
+				AB5B566029FEDAFC0081C6DC /* CreateQuestionGroupViewControllerDelegate.swift */,
 				AB5B565529F6BF120081C6DC /* views */,
 			);
 			path = ViewController;
@@ -166,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				AB8C152129D990FE00735A7E /* CreateQuestionGroupViewController.swift */,
+				AB5B565A29FC2BE00081C6DC /* Delegate+DataSource.swift */,
 				AB22657C29F69842002226F1 /* views */,
 			);
 			path = CreateQuestionGroupViewController;
@@ -325,17 +348,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5B565929FC04C00081C6DC /* CQCollectionView.swift in Sources */,
 				AB2F5405291BBBCF00AFE834 /* QuestionGroupCaretaker.swift in Sources */,
+				AB5B565B29FC2BE00081C6DC /* Delegate+DataSource.swift in Sources */,
 				AB2F54032919C88400AFE834 /* Question.swift in Sources */,
 				ABBC4DEF290B467700453AA5 /* ViewController.swift in Sources */,
 				AB51A66E29BCE1DC000E1C1E /* SequentialQuestionStrateg.swift in Sources */,
 				AB6C6A612976F5DD003BDE89 /* FlipPresentAnimationController.swift in Sources */,
+				AB5B94F02A0D1A0200C1B0DA /* TextFieldWithPadding.swift in Sources */,
+				AB5B565D29FED31C0081C6DC /* CreateQuestionCell.swift in Sources */,
 				AB2F5407291BBD0100AFE834 /* QuestionGroup.swift in Sources */,
 				ABC9B98529A523B20057A84D /* QuestionViewController.swift.swift in Sources */,
-				AB22658029F698C6002226F1 /* CreateQuestionCell.swift in Sources */,
 				AB6C6A6B299E82CE003BDE89 /* UINavigationControllerDelegate.swift in Sources */,
 				ABBC4DEB290B467700453AA5 /* AppDelegate.swift in Sources */,
 				AB6C6A66297FDCF1003BDE89 /* FadePushAnimator.swift in Sources */,
+				AB5B565F29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift in Sources */,
 				AB51A67729BE6B1D000E1C1E /* UITableViewDataSource+UITableViewDelegate.swift in Sources */,
 				AB2F540B292FF8E100AFE834 /* QuestionGroupCell.swift in Sources */,
 				AB6C6A69299CFDAB003BDE89 /* TableViewDataSource+TableViewDelegate.swift in Sources */,
@@ -346,12 +373,13 @@
 				AB2F5409291C594F00AFE834 /* Error.swift in Sources */,
 				ABBC4DED290B467700453AA5 /* SceneDelegate.swift in Sources */,
 				AB51A67029BCE520000E1C1E /* RandomQuestionStrategy.swift in Sources */,
+				AB5B565729F9C5290081C6DC /* VCCustomView.swift in Sources */,
 				AB6C6A642979A8A7003BDE89 /* AnimationHelper.swift in Sources */,
 				AB51A67229BE0FCB000E1C1E /* AppSettings.swift in Sources */,
 				AB51A67929C2178C000E1C1E /* BaseQuestionStrategy.swift in Sources */,
 				AB51A66729B7A6C4000E1C1E /* QuestionViewControllerDelegate.swift in Sources */,
+				AB5B566129FEDAFC0081C6DC /* CreateQuestionGroupViewControllerDelegate.swift in Sources */,
 				AB51A66929B918EC000E1C1E /* ImageRenderer.swift in Sources */,
-				AB22657B29F69254002226F1 /* CreateQuestionGroupTitleCell.swift in Sources */,
 				ABBC4E09291315CE00453AA5 /* DiskCaretaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

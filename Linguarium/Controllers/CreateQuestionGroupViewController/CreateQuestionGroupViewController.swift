@@ -7,17 +7,49 @@
 
 import UIKit
 
-
+public protocol CreateQuestionGroupViewControllerDelegate: AnyObject {
+    func createQuestionGroupViewControllerDidCancel(_ viewController: CreateQuestionGroupViewController)
+    func createQuestionGroupViewController(_ viewController: CreateQuestionGroupViewController, created questionGroup: QuestionGroup)
+}
 
 public class CreateQuestionGroupViewController: UITableViewController {
 
+    var collectionView: UICollectionView!
+    public weak var delegate: CreateQuestionGroupViewControllerDelegate!
+    
+    
+    
     public override func loadView() {
-        super.loadView()
+        self.view = VCCustomView()
         
+        print(view!) // CustomView
         
-        setUpNavigation()
-       
     }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpNavigation()
+        setupCollectionView()
+        configureDataSource()
+    }
+    
+    override public func viewWillLayoutSubviews() {
+        collectionView.frame = UIScreen.main.bounds
+    }
+    
+    
+    func configureDataSource() {
+        
+    }
+    
+    private func setupCollectionView() {
+        collectionView = CQCollectionView()
+        view.addSubview(collectionView)
+        
+        
+        
+    }
+    
     
     private func setUpNavigation() {
         title = "Words Lists"
