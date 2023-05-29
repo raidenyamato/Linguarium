@@ -407,22 +407,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "48D5B2C4-22BD-432A-B204-ACF6497EB1C1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Linguarium/Controllers/CreateQuestionGroupViewController/views/CQCollectionView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "configureDiffableDatasource()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E8CCA244-A671-4413-87E6-04790B1B4E70"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -430,8 +414,8 @@
             filePath = "Linguarium/Controllers/CreateQuestionGroupViewController/views/CQCollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "titleCell(from:for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -510,10 +494,106 @@
             filePath = "Linguarium/Controllers/CreateQuestionGroupViewController/CreateQuestionGroupViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "setupCollectionView()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9FC66E05-0D0D-43F8-B236-A2F603CF7552"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linguarium/Controllers/CreateQuestionGroupViewController/views/CQCollectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "configureCollection()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4087EF93-68B3-4D7A-BAD8-D573251557D5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linguarium/Controllers/CreateQuestionGroupViewController/views/CQCollectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "configureDiffableDatasource()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2A44881-7281-447B-A417-43B1E1E30533"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linguarium/Controllers/CreateQuestionGroupViewController/views/CQCollectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "configureDiffableDatasource()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33D89967-91A4-47FE-82A7-52BFADD81A2E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linguarium/Controllers/CreateQuestionGroupViewController/views/Cells/CreateQuestionCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "init(frame:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "33D89967-91A4-47FE-82A7-52BFADD81A2E - b66d2496b4e61e51"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Linguarium.CreateQuesitonCell.__allocating_init(frame: __C.CGRect) -&gt; Linguarium.CreateQuesitonCell"
+                  moduleName = "Linguarium"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/raidenyamato/Desktop/untitled%20folder/Continuing/iOS/my%20Projects%20for%20product/my%20project/Linguarium%20/Linguarium/Controllers/CreateQuestionGroupViewController/views/Cells/CreateQuestionCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "33D89967-91A4-47FE-82A7-52BFADD81A2E - b14b67d15616b1c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Linguarium.CreateQuesitonCell.init(frame: __C.CGRect) -&gt; Linguarium.CreateQuesitonCell"
+                  moduleName = "Linguarium"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/raidenyamato/Desktop/untitled%20folder/Continuing/iOS/my%20Projects%20for%20product/my%20project/Linguarium%20/Linguarium/Controllers/CreateQuestionGroupViewController/views/Cells/CreateQuestionCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

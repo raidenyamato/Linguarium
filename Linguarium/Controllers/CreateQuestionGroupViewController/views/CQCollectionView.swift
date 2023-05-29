@@ -7,6 +7,49 @@
 
 import UIKit
 
+
+public struct MockStruct: Hashable, Equatable {
+    let integer: Int
+    let identifier = UUID().uuidString
+    
+    static var mock: [MockStruct] {
+        var array: [MockStruct] = []
+        for i in 1..<2 {
+            array.append(MockStruct(integer: i))
+        }
+        return array
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+    public static func == (lhs: MockStruct, rhs: MockStruct) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    
+}
+
+public struct MockStruct2: Hashable, Equatable {
+    let integer: Int
+    let identifier = UUID().uuidString
+    
+    static var mock: [MockStruct] {
+        var array: [MockStruct] = []
+        for i in 1..<6 {
+            array.append(MockStruct(integer: i))
+        }
+        return array
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+    public static func == (lhs: MockStruct2, rhs: MockStruct2) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    
+}
+
 public class CQCollectionView: UICollectionView {
     
     fileprivate struct CellIdentifiers {
@@ -15,38 +58,14 @@ public class CQCollectionView: UICollectionView {
         fileprivate static let question = "CreateQuestionCell"
     }
     
-    enum Section {
-        case main
-    }
-    var diffableDataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
     
-    convenience init() {
-        
-        //        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        //        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        //        layout.itemSize = CGSize(width: 60, height: 60)
-        
-        let itemsize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemsize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.2))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 2
-        section.contentInsets = NSDirectionalEdgeInsets(top: 17, leading: 17, bottom: 17, trailing: 17)
-        
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        
-        self.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-        
-        configureDiffableDatasource()
-    }
+    var diffableDataSource: UICollectionViewDiffableDataSource<Section, MockStruct>! = nil
+    
+    
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
+        configureDiffableDatasource()
         configureCollection()
     }
     
@@ -63,7 +82,7 @@ public class CQCollectionView: UICollectionView {
         
         register(CreateQuestionGroupTitleCell.self, forCellWithReuseIdentifier: CellIdentifiers.title)
         register(CreateQuesitonCell.self, forCellWithReuseIdentifier: CellIdentifiers.question)
-        
+        register(AddQuestionCell.self, forCellWithReuseIdentifier: CellIdentifiers.add)
         alwaysBounceVertical = true
         self.delegate = self
         
@@ -72,33 +91,44 @@ public class CQCollectionView: UICollectionView {
     
     
     func configureDiffableDatasource() {
-        diffableDataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: self, cellProvider: { [self] collectionView, indexPath, itemIdentifier in
+        diffableDataSource = UICollectionViewDiffableDataSource<Section, MockStruct>(collectionView: self, cellProvider: { [self] collectionView, indexPath, item in
             
-            var cell: UICollectionViewCell!
-            let row = indexPath.row
-            if row == 0 {
-                cell = titleCell(from: self, for: indexPath)
-            } else if row == 1 {
-                cell = questionCell(from: self, for: indexPath)
+            print("\(indexPath.section)")
+            if indexPath.section == 0 {
+               let cell = titleCell(from: self, for: indexPath)
+                return configureCell(cell: cell)
+            } else if indexPath.section == 1 {
+              let cell = questionCell(from: self, for: indexPath)
+                cell.indexLabel.text = String(item.integer)
+                return configureCell(cell: cell)
+            } else {
+                let cell = addQuestionGroupCell(from: self, for: indexPath)
+                return configureCell(cell: cell)
             }
-            cell.backgroundColor = UIColor(red: 220 / 255,
-                                           green: 248 / 255,
-                                           blue: 255 / 255,
-                                           alpha: 0.9)
-            cell.contentView.backgroundColor = UIColor(white: 1, alpha: 0.7)
-            cell.layer.shadowOffset = CGSizeMake(0, 5)
-            cell.layer.shadowOpacity = 1
-            cell.layer.shadowRadius = 10
-            cell.layer.shadowColor = UIColor(red: 44.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1.0).cgColor
+           
             
-            cell.layer.borderColor = UIColor(red: 48 / 255, green: 179 / 255, blue: 199 / 255, alpha: 0.3).cgColor
-            cell.layer.borderWidth = 3
-            return cell
         })
-        var snapshot = NSDiffableDataSourceSnapshot<Section,Int>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(Array(0..<2))
+        var snapshot = NSDiffableDataSourceSnapshot<Section,MockStruct>()
+        snapshot.appendSections([ .title, .questions, .create])
+       snapshot.appendItems(MockStruct.mock, toSection: .title)
+        snapshot.appendItems(MockStruct2.mock, toSection: .questions)
+        snapshot.appendItems(MockStruct.mock, toSection: .create)
         diffableDataSource.apply(snapshot, animatingDifferences: false)
+    }
+    private func configureCell(cell: UICollectionViewCell) -> UICollectionViewCell {
+        cell.backgroundColor = UIColor(red: 220 / 255,
+                                       green: 248 / 255,
+                                       blue: 255 / 255,
+                                       alpha: 0.9)
+        cell.contentView.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        cell.layer.shadowOffset = CGSizeMake(0, 5)
+        cell.layer.shadowOpacity = 1
+        cell.layer.shadowRadius = 10
+        cell.layer.shadowColor = UIColor(red: 44.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1.0).cgColor
+        
+        cell.layer.borderColor = UIColor(red: 48 / 255, green: 179 / 255, blue: 199 / 255, alpha: 0.3).cgColor
+        cell.layer.borderWidth = 3
+        return cell
     }
     
     private func titleCell(from collectionView: UICollectionView, for indexaPath: IndexPath) -> CreateQuestionGroupTitleCell {
@@ -107,14 +137,16 @@ public class CQCollectionView: UICollectionView {
         return cell
     }
     
-    
-    
     private func questionCell(from collectionView: UICollectionView,
                               for indexPath: IndexPath) -> CreateQuesitonCell {
         guard  let cell = dequeueReusableCell(withReuseIdentifier: CellIdentifiers.question, for: indexPath) as? CreateQuesitonCell else { fatalError("Cannot create new cell")}
         return cell
     }
     
+    private func addQuestionGroupCell(from collecitonVew: UICollectionView, for indexPath: IndexPath) -> AddQuestionCell {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: CellIdentifiers.add, for: indexPath) as? AddQuestionCell else { fatalError("Cannot create new add cell")}
+        return cell
+    }
     
 }
     
@@ -151,3 +183,5 @@ extension CQCollectionView: CreateQuesitonCellDelegate {
     
     
 }
+
+

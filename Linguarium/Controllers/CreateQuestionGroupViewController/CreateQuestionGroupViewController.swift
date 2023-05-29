@@ -14,6 +14,8 @@ public protocol CreateQuestionGroupViewControllerDelegate: AnyObject {
 
 public class CreateQuestionGroupViewController: UITableViewController {
 
+    
+    
     var collectionView: UICollectionView!
     public weak var delegate: CreateQuestionGroupViewControllerDelegate!
     
@@ -43,12 +45,17 @@ public class CreateQuestionGroupViewController: UITableViewController {
     }
     
     private func setupCollectionView() {
-        collectionView = CQCollectionView()
+        
+        collectionView = CQCollectionView(frame: UIScreen.main.bounds, collectionViewLayout: configureCollectionLayout())
         view.addSubview(collectionView)
         
         
         
     }
+    
+            
+        
+    
     
     
     private func setUpNavigation() {

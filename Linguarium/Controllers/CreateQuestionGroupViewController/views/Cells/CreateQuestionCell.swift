@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - CreateQuestionCellDelegate
 public protocol CreateQuesitonCellDelegate {
     func createQuesitonCell(_ cell: CreateQuesitonCell, answerTextDidChange text: String)
     func createQuesitonCell(_ cell: CreateQuesitonCell, hintTextDidChange text: String)
@@ -19,9 +20,11 @@ public class CreateQuesitonCell: UICollectionViewCell {
     public var delegate: CreateQuesitonCellDelegate?
     
     public var indexLabel: UILabel!
-    public var answerTextField: UITextField!
-    public var hintTextField: UITextField!
     public var promptTextField: UITextField!
+    public var hintTextField: UITextField!
+    public var answerTextField: UITextField!
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,18 +37,47 @@ public class CreateQuesitonCell: UICollectionViewCell {
     }
     
     private func configure() {
-        answerTextField = TextFieldWithPadding(delegate: self, placeHolder: "Answer")
-        hintTextField = TextFieldWithPadding(delegate: self, placeHolder: "Hint (optional)")
-        promptTextField = TextFieldWithPadding(delegate: self, placeHolder: "Prompt")
         
+      //  contentView.addSubview(indexLabel)
+        
+        // stack view
+         let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 5
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 5)
+        
+        // text fields
+        indexLabel = UILabel()
+        promptTextField = TextFieldWithPadding(delegate: self, placeHolder: "Prompt")
+        hintTextField = TextFieldWithPadding(delegate: self, placeHolder: "Hint (optional)")
+        answerTextField = TextFieldWithPadding(delegate: self, placeHolder: "Answer")
+        
+       
+        
+        stackView.addArrangedSubview(indexLabel)
+        stackView.addArrangedSubview(promptTextField)
+        stackView.addArrangedSubview(hintTextField)
+        stackView.addArrangedSubview(answerTextField)
+        
+        contentView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+        
+        // add target-actions to text fields
         promptTextField.addTarget(self, action: #selector(promptTextFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         hintTextField.addTarget(self, action: #selector(hintTextFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         answerTextField.addTarget(self, action: #selector(answerTextFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         
     }
-    
-   
-    
     
 }
 

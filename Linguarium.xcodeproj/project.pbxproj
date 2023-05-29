@@ -29,6 +29,8 @@
 		AB5B565F29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B565E29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift */; };
 		AB5B566129FEDAFC0081C6DC /* CreateQuestionGroupViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B566029FEDAFC0081C6DC /* CreateQuestionGroupViewControllerDelegate.swift */; };
 		AB5B94F02A0D1A0200C1B0DA /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B94EF2A0D1A0200C1B0DA /* TextFieldWithPadding.swift */; };
+		AB5B95192A18FA1600C1B0DA /* ConfigureCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B95182A18FA1600C1B0DA /* ConfigureCollectionLayout.swift */; };
+		AB5B951B2A23AB7500C1B0DA /* AddQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B951A2A23AB7500C1B0DA /* AddQuestionCell.swift */; };
 		AB6C6A612976F5DD003BDE89 /* FlipPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C6A602976F5DD003BDE89 /* FlipPresentAnimationController.swift */; };
 		AB6C6A642979A8A7003BDE89 /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C6A632979A8A7003BDE89 /* AnimationHelper.swift */; };
 		AB6C6A66297FDCF1003BDE89 /* FadePushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C6A65297FDCF1003BDE89 /* FadePushAnimator.swift */; };
@@ -68,6 +70,8 @@
 		AB5B565E29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionGroupTitleCell.swift; sourceTree = "<group>"; };
 		AB5B566029FEDAFC0081C6DC /* CreateQuestionGroupViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionGroupViewControllerDelegate.swift; sourceTree = "<group>"; };
 		AB5B94EF2A0D1A0200C1B0DA /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
+		AB5B95182A18FA1600C1B0DA /* ConfigureCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCollectionLayout.swift; sourceTree = "<group>"; };
+		AB5B951A2A23AB7500C1B0DA /* AddQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionCell.swift; sourceTree = "<group>"; };
 		AB6C6A602976F5DD003BDE89 /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipPresentAnimationController.swift; sourceTree = "<group>"; };
 		AB6C6A632979A8A7003BDE89 /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		AB6C6A65297FDCF1003BDE89 /* FadePushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadePushAnimator.swift; sourceTree = "<group>"; };
@@ -139,8 +143,9 @@
 		AB5B56622A052C8A0081C6DC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				AB5B565C29FED31C0081C6DC /* CreateQuestionCell.swift */,
 				AB5B565E29FED3300081C6DC /* CreateQuestionGroupTitleCell.swift */,
+				AB5B565C29FED31C0081C6DC /* CreateQuestionCell.swift */,
+				AB5B951A2A23AB7500C1B0DA /* AddQuestionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 			children = (
 				AB8C152129D990FE00735A7E /* CreateQuestionGroupViewController.swift */,
 				AB5B565A29FC2BE00081C6DC /* Delegate+DataSource.swift */,
+				AB5B95182A18FA1600C1B0DA /* ConfigureCollectionLayout.swift */,
 				AB22657C29F69842002226F1 /* views */,
 			);
 			path = CreateQuestionGroupViewController;
@@ -366,10 +372,12 @@
 				AB51A67729BE6B1D000E1C1E /* UITableViewDataSource+UITableViewDelegate.swift in Sources */,
 				AB2F540B292FF8E100AFE834 /* QuestionGroupCell.swift in Sources */,
 				AB6C6A69299CFDAB003BDE89 /* TableViewDataSource+TableViewDelegate.swift in Sources */,
+				AB5B95192A18FA1600C1B0DA /* ConfigureCollectionLayout.swift in Sources */,
 				AB51A66C29BCD3E6000E1C1E /* QuestionStrategy.swift in Sources */,
 				AB51A67529BE6898000E1C1E /* AppSettingsViewController.swift in Sources */,
 				AB2F540F2951CDC100AFE834 /* QuestionView.swift in Sources */,
 				AB8C152229D990FE00735A7E /* CreateQuestionGroupViewController.swift in Sources */,
+				AB5B951B2A23AB7500C1B0DA /* AddQuestionCell.swift in Sources */,
 				AB2F5409291C594F00AFE834 /* Error.swift in Sources */,
 				ABBC4DED290B467700453AA5 /* SceneDelegate.swift in Sources */,
 				AB51A67029BCE520000E1C1E /* RandomQuestionStrategy.swift in Sources */,

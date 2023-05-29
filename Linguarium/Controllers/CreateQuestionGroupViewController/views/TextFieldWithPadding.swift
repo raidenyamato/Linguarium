@@ -39,7 +39,6 @@ class TextFieldWithPadding: UITextField {
     }
     
     
-    
     private func configure() {
         layer.cornerRadius = 5
         layer.borderColor = UIColor(red: 48 / 255, green: 179 / 255, blue: 199 / 255, alpha: 0.3).cgColor
@@ -50,8 +49,6 @@ class TextFieldWithPadding: UITextField {
         contentMode = .scaleToFill
        
     }
-    
-    
     
     
         override func textRect(forBounds bounds: CGRect) -> CGRect {

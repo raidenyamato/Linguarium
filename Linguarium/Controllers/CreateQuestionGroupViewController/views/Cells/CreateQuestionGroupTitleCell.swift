@@ -20,7 +20,7 @@ public class CreateQuestionGroupTitleCell: UICollectionViewCell {
     
     
     public let titleLabel: UILabel  = {
-        let titleLabel = UILabel(frame: CGRect(x: 3, y: 2, width: 200, height: 20))
+        let titleLabel = UILabel(frame: CGRect(x: 5, y: 2, width: 200, height: 20))
         titleLabel.text = "New group title"
         return titleLabel
     }()
