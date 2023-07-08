@@ -35,3 +35,4 @@ public final class QuestionGroupCaretaker {
         try DiskCaretaker.save(questionGroups, to: fileName)
     }
 }
+

@@ -22,7 +22,6 @@ public class QuestionGroup: Codable {
         self.title = title
     }
     
-    
     public class Score: Codable {
         public var correctCount: Int = 0 {
             didSet { updateRunningPercentage() }

@@ -47,22 +47,27 @@ public class CreateQuesitonCell: UICollectionViewCell {
         stackView.distribution = .fillProportionally
         stackView.spacing = 5
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 5)
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 25, leading: 5, bottom: 10, trailing: 5)
         
         // text fields
-        indexLabel = UILabel()
+        indexLabel = {
+            let label = UILabel(frame: CGRect(x: 5, y: 2, width: 200, height: 20))
+            return label
+        }()
+        
         promptTextField = TextFieldWithPadding(delegate: self, placeHolder: "Prompt")
         hintTextField = TextFieldWithPadding(delegate: self, placeHolder: "Hint (optional)")
         answerTextField = TextFieldWithPadding(delegate: self, placeHolder: "Answer")
         
        
         
-        stackView.addArrangedSubview(indexLabel)
+       
         stackView.addArrangedSubview(promptTextField)
         stackView.addArrangedSubview(hintTextField)
         stackView.addArrangedSubview(answerTextField)
         
         contentView.addSubview(stackView)
+        contentView.addSubview(indexLabel)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

@@ -18,7 +18,7 @@ public enum Section: Int, CaseIterable {
         case .title:
             return .fractionalHeight(1.0)
         case .questions:
-            return .fractionalHeight(0.2)
+            return .fractionalHeight(1.0)
         default:
             return .fractionalHeight(1.0)
         }
@@ -29,7 +29,7 @@ public enum Section: Int, CaseIterable {
         case .title:
             return .fractionalHeight(0.1)
         case .questions:
-            return .fractionalHeight(1.0)
+            return .fractionalHeight(0.2)
         default:
             return .fractionalHeight(0.1)
         }

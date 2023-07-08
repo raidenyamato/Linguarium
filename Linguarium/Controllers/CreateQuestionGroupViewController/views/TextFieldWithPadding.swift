@@ -27,7 +27,7 @@ class TextFieldWithPadding: UITextField {
     }
     
     convenience init(delegate: UITextFieldDelegate, placeHolder: String, frame: CGRect = .zero) {
-        self.init(frame: .zero)
+        self.init(frame: frame)
         self.delegate = delegate
         self.placeholder = placeHolder
         self.frame = frame

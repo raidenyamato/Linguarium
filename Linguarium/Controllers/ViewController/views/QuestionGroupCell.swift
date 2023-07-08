@@ -9,10 +9,8 @@ import UIKit
 import Combine
 
 
-
 class GroupItem {
     
-   
     
     public let questionGroup: QuestionGroup
     var percentage: String = "0 %"
@@ -48,12 +46,6 @@ public class QuestionGroupCell: UITableViewCell {
     public func configure(questionGroup: QuestionGroup) {
         
         groupItem = GroupItem(questionGroup: questionGroup)
-        
-        //        var config = MyContentConfiguration()
-        //        config.title = title
-        //        config.percentage = percentage
-        //
-        //        contentConfiguration = config
     }
     
     public override func prepareForReuse() {

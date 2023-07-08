@@ -21,7 +21,4 @@ public class AppSettingsViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
-    
-    
-    
 }

@@ -57,7 +57,7 @@ public enum QuestionStrategyType: Int, CaseIterable {
         }
     }
     
-    public func questionStrategy( for questionGroupCaretaker: QuestionGroupCaretaker) -> QuestionStrategy {
+    public func questionStrategy(for questionGroupCaretaker: QuestionGroupCaretaker) -> QuestionStrategy {
         switch self {
         case .random:
             return RandomQuestionStrategy(questionGroupCaretaker: questionGroupCaretaker)

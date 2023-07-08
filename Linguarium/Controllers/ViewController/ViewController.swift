@@ -107,12 +107,8 @@ public class ViewController: UIViewController {
         
         present(toViewController, animated: true)
         
-        
-
-        
     }
 }
-
 
 
 // MARK: - UIViewControllerTransitioningDelegate     there is now need becose we work via navigation delegate

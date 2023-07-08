@@ -29,28 +29,30 @@ public struct MockStruct: Hashable, Equatable {
     
 }
 
-public struct MockStruct2: Hashable, Equatable {
-    let integer: Int
-    let identifier = UUID().uuidString
-    
-    static var mock: [MockStruct] {
-        var array: [MockStruct] = []
-        for i in 1..<6 {
-            array.append(MockStruct(integer: i))
-        }
-        return array
-    }
-    
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
-    public static func == (lhs: MockStruct2, rhs: MockStruct2) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
-    
-}
+//public struct QuestionStruct: Hashable, Equatable {
+//    let integer: Int
+//    let identifier = UUID().uuidString
+//
+//    static var mock: [QuestionStruct] {
+//        var array: [QuestionStruct] = []
+//        for i in 1..<6 {
+//            array.append(QuestionStruct(integer: i))
+//        }
+//        return array
+//    }
+//
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(identifier)
+//    }
+//    public static func == (lhs: QuestionStruct, rhs: QuestionStruct) -> Bool {
+//        return lhs.identifier == rhs.identifier
+//    }
+//
+//}
 
 public class CQCollectionView: UICollectionView {
+    
+    public var questionGroupBuilder: QuestionGroupBuilder!
     
     fileprivate struct CellIdentifiers {
         fileprivate static let add = "AddQuestionCell"
@@ -59,14 +61,19 @@ public class CQCollectionView: UICollectionView {
     }
     
     
-    var diffableDataSource: UICollectionViewDiffableDataSource<Section, MockStruct>! = nil
-    
-    
+    var diffableDataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>! = nil
+    var snapshot: NSDiffableDataSourceSnapshot<Section, AnyHashable>!
+     
+    convenience init (frame: CGRect, collectionViewLayout layout: UICollectionViewLayout, questionGroupBuilder: QuestionGroupBuilder) {
+        self.init(frame: frame, collectionViewLayout: layout)
+        self.questionGroupBuilder = questionGroupBuilder
+        configureCollection()
+        configureDiffableDatasource()
+        configureDiffableDataSourceSnapshot()
+    }
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-        configureDiffableDatasource()
-        configureCollection()
     }
     
     required init?(coder: NSCoder) {
@@ -86,12 +93,12 @@ public class CQCollectionView: UICollectionView {
         alwaysBounceVertical = true
         self.delegate = self
         
-        
     }
     
     
     func configureDiffableDatasource() {
-        diffableDataSource = UICollectionViewDiffableDataSource<Section, MockStruct>(collectionView: self, cellProvider: { [self] collectionView, indexPath, item in
+        diffableDataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(
+            collectionView: self,cellProvider: { [self] collectionView, indexPath, item in
             
             print("\(indexPath.section)")
             if indexPath.section == 0 {
@@ -99,7 +106,8 @@ public class CQCollectionView: UICollectionView {
                 return configureCell(cell: cell)
             } else if indexPath.section == 1 {
               let cell = questionCell(from: self, for: indexPath)
-                cell.indexLabel.text = String(item.integer)
+                let question = questionGroupBuilder.questions[indexPath.row]
+               
                 return configureCell(cell: cell)
             } else {
                 let cell = addQuestionGroupCell(from: self, for: indexPath)
@@ -108,13 +116,18 @@ public class CQCollectionView: UICollectionView {
            
             
         })
-        var snapshot = NSDiffableDataSourceSnapshot<Section,MockStruct>()
+        
+    }
+    
+    private func configureDiffableDataSourceSnapshot() {
+        snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
         snapshot.appendSections([ .title, .questions, .create])
        snapshot.appendItems(MockStruct.mock, toSection: .title)
-        snapshot.appendItems(MockStruct2.mock, toSection: .questions)
+        snapshot.appendItems(questionGroupBuilder.questions, toSection: .questions)
         snapshot.appendItems(MockStruct.mock, toSection: .create)
         diffableDataSource.apply(snapshot, animatingDifferences: false)
     }
+    
     private func configureCell(cell: UICollectionViewCell) -> UICollectionViewCell {
         cell.backgroundColor = UIColor(red: 220 / 255,
                                        green: 248 / 255,
@@ -134,54 +147,83 @@ public class CQCollectionView: UICollectionView {
     private func titleCell(from collectionView: UICollectionView, for indexaPath: IndexPath) -> CreateQuestionGroupTitleCell {
         guard  let cell = dequeueReusableCell(withReuseIdentifier: CellIdentifiers.title, for: indexaPath) as? CreateQuestionGroupTitleCell else { fatalError("Cannot create new title cell")}
         cell.delegate = self
+       // cell.titleLabel.text = questionGroupBuilder.title
+        cell.titleLabel.text = "Group Title"
         return cell
     }
     
     private func questionCell(from collectionView: UICollectionView,
                               for indexPath: IndexPath) -> CreateQuesitonCell {
         guard  let cell = dequeueReusableCell(withReuseIdentifier: CellIdentifiers.question, for: indexPath) as? CreateQuesitonCell else { fatalError("Cannot create new cell")}
+        
+        cell.delegate = self
+        let questionBuilder = questionBuilder(for: indexPath)
+        
+        cell.indexLabel.text = "Question \(indexPath.row + 1)"
+        cell.promptTextField.text = questionBuilder.prompt
+        cell.answerTextField.text = questionBuilder.answer
+        cell.hintTextField.text = questionBuilder.hint
+        
         return cell
+    }
+    
+    private func questionBuilder(for indexPath: IndexPath) -> QuestionBuilder {
+        return questionGroupBuilder.questions[indexPath.row]
     }
     
     private func addQuestionGroupCell(from collecitonVew: UICollectionView, for indexPath: IndexPath) -> AddQuestionCell {
         guard let cell = dequeueReusableCell(withReuseIdentifier: CellIdentifiers.add, for: indexPath) as? AddQuestionCell else { fatalError("Cannot create new add cell")}
         return cell
     }
-    
 }
     
 // MARK: - UICollectionViewDelegate
 extension CQCollectionView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         deselectItem(at: indexPath, animated: true)
-        print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        //        print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        guard isLastSectionPath(indexPath) else { return }
+       print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        
+        questionGroupBuilder.addNewQuestion()
+        print("\(questionGroupBuilder.questions.count)")
+//        insertItems(at: [indexPath])
+        configureDiffableDataSourceSnapshot()
     }
+    
+    private func isLastSectionPath(_ indexPath: IndexPath) -> Bool {
+        return indexPath.section == 2
+    }
+    
 }
 
 // MARK: - CreateQuestionGroupTitleCellDelegate
 
 extension CQCollectionView: CreateQuestionGroupTitleCellDelegate {
     public func createQuestionGroupTitleCell(_ cell: CreateQuestionGroupTitleCell, titlTextDidChange text: String) {
-        // TODO: Write this
+        questionGroupBuilder.title = text
     }
 }
-
 
 // MARK: - CreateQuestionCellDelegate
 extension CQCollectionView: CreateQuesitonCellDelegate {
     public func createQuesitonCell(_ cell: CreateQuesitonCell, answerTextDidChange text: String) {
-        // TODO: - Write this
+        questionBuilder(for: cell).answer = text
     }
     
     public func createQuesitonCell(_ cell: CreateQuesitonCell, hintTextDidChange text: String) {
-        // TODO: - Write this
+        questionBuilder(for: cell).hint = text
     }
     
     public func createQuesitonCell(_ cell: CreateQuesitonCell, promptTextDidChange text: String) {
-        // TODO: - Write this
+        questionBuilder(for: cell).prompt = text
     }
     
-    
+    private func questionBuilder(for cell: CreateQuesitonCell) -> QuestionBuilder {
+        let indexpath = indexPath(for: cell)!
+        return questionBuilder(for: indexpath)
+    }
 }
+
 
 

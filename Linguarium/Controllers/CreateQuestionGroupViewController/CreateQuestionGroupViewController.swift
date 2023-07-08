@@ -15,10 +15,9 @@ public protocol CreateQuestionGroupViewControllerDelegate: AnyObject {
 public class CreateQuestionGroupViewController: UITableViewController {
 
     
-    
-    var collectionView: UICollectionView!
+    var collectionView: CQCollectionView! 
     public weak var delegate: CreateQuestionGroupViewControllerDelegate!
-    
+    public let questionGroupBuilder = QuestionGroupBuilder()
     
     
     public override func loadView() {
@@ -32,32 +31,19 @@ public class CreateQuestionGroupViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setupCollectionView()
-        configureDataSource()
+        
     }
     
     override public func viewWillLayoutSubviews() {
         collectionView.frame = UIScreen.main.bounds
     }
     
-    
-    func configureDataSource() {
-        
-    }
-    
     private func setupCollectionView() {
-        
-        collectionView = CQCollectionView(frame: UIScreen.main.bounds, collectionViewLayout: configureCollectionLayout())
+        collectionView = CQCollectionView(frame: UIScreen.main.bounds, collectionViewLayout: configureCollectionLayout(), questionGroupBuilder: questionGroupBuilder)
         view.addSubview(collectionView)
-        
-        
-        
     }
     
             
-        
-    
-    
-    
     private func setUpNavigation() {
         title = "Words Lists"
         self.navigationController?.navigationBar.isTranslucent = false
@@ -69,8 +55,17 @@ public class CreateQuestionGroupViewController: UITableViewController {
                                              alpha: 1)
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
+        
+        let action = #selector(cancelPressed(sender:))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: action)
     }
 
+   
+    
+    @objc private func cancelPressed(sender: Any) {
+        delegate?.createQuestionGroupViewControllerDidCancel(self)
+    }
+    
     
 }
 

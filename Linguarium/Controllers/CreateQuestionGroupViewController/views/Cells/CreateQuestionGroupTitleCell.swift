@@ -21,7 +21,7 @@ public class CreateQuestionGroupTitleCell: UICollectionViewCell {
     
     public let titleLabel: UILabel  = {
         let titleLabel = UILabel(frame: CGRect(x: 5, y: 2, width: 200, height: 20))
-        titleLabel.text = "New group title"
+        titleLabel.text = "Group title"
         return titleLabel
     }()
     
@@ -38,14 +38,14 @@ public class CreateQuestionGroupTitleCell: UICollectionViewCell {
     
     
     private func configure() {
+        contentView.addSubview(titleLabel)
+        
         titleTextField = TextFieldWithPadding(delegate: self,
                                               placeHolder: "Title",
                                               frame: CGRect(x: 10, y: 25, width: contentView.bounds.width - 20, height: contentView.bounds.height - 35))
         contentView.addSubview(titleTextField)
         titleTextField.addTarget(self, action: #selector(titleTextFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        contentView.addSubview(titleLabel)
     }
-    
     
     
 }

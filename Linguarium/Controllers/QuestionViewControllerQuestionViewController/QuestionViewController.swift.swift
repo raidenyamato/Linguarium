@@ -28,8 +28,6 @@ public class QuestionViewController: UIViewController {
     }
     
     
-    
-    
     private lazy var questionIndexItem: UIBarButtonItem = {
         let item = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         item.tintColor = .black
@@ -71,6 +69,7 @@ public class QuestionViewController: UIViewController {
     {
         delegate?.questionViewController(self, didCancel: questionStrategy, at: questionIndex)
     }
+    
     private func addQuestionView() {
         questionView = QuestionView()
         questionView.backgroundColor = .cyan
@@ -102,7 +101,8 @@ public class QuestionViewController: UIViewController {
         questionView.answerlabel.isHidden = true
         questionView.hintLabel.isHidden = true
         
-        questionIndexItem.title = questionStrategy.questionIndexTitle()    }
+        questionIndexItem.title = questionStrategy.questionIndexTitle()
+    }
     
     
     func handleCorrect() {
