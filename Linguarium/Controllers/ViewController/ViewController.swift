@@ -61,6 +61,14 @@ public class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    public override func viewWillLayoutSubviews() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+    
     // MARK:  Settings Button
     private func setupSettingsButton() {
         let action = #selector(handleSettingsButton(sender:))
@@ -92,7 +100,6 @@ public class ViewController: UIViewController {
     private func setupTableView() {
         tableView = UITableView()
         view.addSubview(tableView)
-        tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
     }

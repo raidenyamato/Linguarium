@@ -56,16 +56,34 @@ public class CreateQuestionGroupViewController: UITableViewController {
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
         
-        let action = #selector(cancelPressed(sender:))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: action)
+        let cancelAction = #selector(cancelPressed(sender:))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: cancelAction)
+        
+        let saveAction = #selector(savePressed(sender:))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: saveAction)
     }
 
    
-    
     @objc private func cancelPressed(sender: Any) {
         delegate?.createQuestionGroupViewControllerDidCancel(self)
     }
     
+    @objc private func savePressed(sender: Any) {
+        do { let questionGroup = try questionGroupBuilder.build()
+            delegate?.createQuestionGroupViewController(self, created: questionGroup)
+        } catch {
+            displayMissingInputsAlert()
+        }
+    }
+    
+    public func displayMissingInputsAlert() {
+        let alert = UIAlertController(title: "Missing Inputs",
+                                      message: "Please provide all non-optional values",
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
     
 }
 

@@ -18,7 +18,10 @@ import UIKit
 
 public class AddQuestionCell: UICollectionViewCell {
     
-    var image: UIImageView!
+    var imageView: UIImageView = {
+       let imageView = UIImageView(image: UIImage(named: "ic_circle_plus"))
+        return imageView
+    }()
     
   
     
@@ -33,7 +36,9 @@ public class AddQuestionCell: UICollectionViewCell {
     
     
     private func configure() {
-     
+        contentView.addSubview(imageView)
+        imageView.center = contentView.center
+        
     }
     
     
